@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 20rem);
+  grid-template-rows: 3fr repeat(4, 2fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 25px;
+}
+
+.grid-item {
+  border: 1px;
+  border-radius: 2px;
+}
