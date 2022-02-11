@@ -15,7 +15,8 @@ const Context = ({ children }) => {
 
   const [state, dispatch] = useReducer(cartReducer, {
     indicadores: [],
-    simulador: { tipoIndex: "", rendimento: "" },
+    simular: { tipoIndex: "", rendimento: "" },
+    resultado: {}
   });
 
   useEffect(() => {
@@ -24,16 +25,15 @@ const Context = ({ children }) => {
         `http://localhost:3000/simulacoes?tipoIndexacao=${tipoIndex}&tipoRendimento=${rendimento}`
       );
       const data = await response.json();
-      console.log(data);
+      dispatch({type: 'RESULTADO', value: data})
     }
     if (
-      state.simulador.rendimento.trim() !== "" &&
-      state.simulador.tipoIndex.trim() !== ""
+      state.simular.rendimento.trim() !== "" &&
+      state.simular.tipoIndex.trim() !== ""
     ) {
-      fetchSimulacao(state.simulador.tipoIndex, state.simulador.rendimento);
-      console.log("oi");
+      fetchSimulacao(state.simular.tipoIndex, state.simular.rendimento);
     }
-  }, [state.simulador.tipoIndex, state.simulador.rendimento]);
+  }, [state.simular.tipoIndex, state.simular.rendimento]);
 
   console.log(state);
 

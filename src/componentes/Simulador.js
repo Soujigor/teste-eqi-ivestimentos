@@ -61,14 +61,14 @@ const Simulador = () => {
                   borderLeftRadius="10px"
                   onClick={() => rendimentoHandler("bruto")}
                 >
-                  Bruto
+                  {rendimento === "bruto" ? "✓  " : ""}Bruto
                 </Button>
                 <Button
                   borderRightRadius="10px"
                   bg={rendimento === "liquido" ? "#EC8C54" : ""}
                   onClick={() => rendimentoHandler("liquido")}
                 >
-                  Líquido
+                  {rendimento === "liquido" ? "✓  " : ""}Líquido
                 </Button>
               </ButtonGroup>
             </Flex>
@@ -103,20 +103,20 @@ const Simulador = () => {
                   onClick={() => indexacaoHandler("pre")}
                   bg={tipoIndexacao === "pre" ? "#EC8C54" : ""}
                 >
-                  PRÉ
+                  {tipoIndexacao === "pre" ? "✓  " : ""}PRÉ
                 </Button>{" "}
                 <Button
                   bg={tipoIndexacao === "pos" ? "#EC8C54" : ""}
                   onClick={() => indexacaoHandler("pos")}
                 >
-                  PÓS
+                  {tipoIndexacao === "pos" ? "✓  " : ""}PÓS
                 </Button>
                 <Button
                   borderRightRadius="10px"
                   bg={tipoIndexacao === "ipca" ? "#EC8C54" : ""}
                   onClick={() => indexacaoHandler("ipca")}
                 >
-                  FIXADO
+                  {tipoIndexacao === "ipca" ? "✓  " : ""}FIXADO
                 </Button>
               </ButtonGroup>
             </Flex>
@@ -155,7 +155,7 @@ const Simulador = () => {
             bg="#939393"
             onClick={() =>
               dispatch({
-                type: "SIMULACAO",
+                type: "SIMULAR",
                 value: { tipoIndex: tipoIndexacao, rendimento: rendimento },
               })
             }
