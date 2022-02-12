@@ -66,12 +66,14 @@ const Simulador = () => {
 
   const {
     value: enteredCDI,
-    isValid: cdiInicialIsValid,
+    isValid: cdiIsValid,
     hasError: cdiHasError,
     valueChangeHandler: cdiChangeHandler,
     inputBlurHandler: cdiBlurHandler,
   } = useInput((value) => (value.match(reg) ? true : false));
 
+  const inputsAreValid = aporteInicialIsValid && prazoIsValid && aporteMensalIsValid && rentabilidadeIsValid
+  console.log(ipcaIsValid)
   const [rendimento, setRendimento] = useState("bruto");
   const [tipoIndexacao, setTipoIndexacao] = useState("pos");
 
@@ -92,6 +94,13 @@ const Simulador = () => {
     resetPrazo();
     resetRentabilidade();
   };
+
+  const submitHandler = () => {
+    dispatch({
+      type: "SIMULAR",
+      value: { tipoIndex: tipoIndexacao, rendimento: rendimento },
+    })
+  }
 
   return (
     <Grid templateColumns="1fr 1fr">
@@ -274,13 +283,9 @@ const Simulador = () => {
             borderRadius="10px"
             borderColor="white"
             color="white"
-            bg="#939393"
-            onClick={() =>
-              dispatch({
-                type: "SIMULAR",
-                value: { tipoIndex: tipoIndexacao, rendimento: rendimento },
-              })
-            }
+            bg="orange"
+            onClick={submitHandler}
+            disabled={!inputsAreValid}
           >
             Simular
           </Button>
