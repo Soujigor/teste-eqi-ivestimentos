@@ -6,9 +6,12 @@ import {
   Text,
   Button,
   ButtonGroup,
+  HStack,
 } from "@chakra-ui/react";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { UserInput } from "./UserInput";
 import { CartState } from "../componentes/context/Context";
+import useInput from "./hooks/use-input";
 
 const Simulador = () => {
   const {
@@ -16,8 +19,61 @@ const Simulador = () => {
     dispatch,
   } = CartState();
 
-  const [rendimento, setRendimento] = useState("");
-  const [tipoIndexacao, setTipoIndexacao] = useState("");
+  const reg = /^\d+$/;
+  const {
+    value: enteredAporteInicial,
+    isValid: aporteInicialIsValid,
+    hasError: aporteInicialHasError,
+    valueChangeHandler: aporteInicialChangeHandler,
+    inputBlurHandler: aporteInicialBlurHandler,
+    reset: resetAporteInicial,
+  } = useInput((value) => (value.match(reg) ? true : false));
+
+  const {
+    value: enteredPrazo,
+    isValid: prazoIsValid,
+    hasError: prazoHasError,
+    valueChangeHandler: prazoChangeHandler,
+    inputBlurHandler: prazoBlurHandler,
+    reset: resetPrazo,
+  } = useInput((value) => (value.match(reg) ? true : false));
+
+  const {
+    value: enteredIPCA,
+    isValid: ipcaIsValid,
+    hasError: ipcaHasError,
+    valueChangeHandler: ipcaChangeHandler,
+    inputBlurHandler: ipcaBlurHandler,
+  } = useInput((value) => (value.match(reg) ? true : false));
+
+  const {
+    value: enteredAporteMensal,
+    isValid: aporteMensalIsValid,
+    hasError: aporteMensalHasError,
+    valueChangeHandler: aporteMensalChangeHandler,
+    inputBlurHandler: aporteMensalBlurHandler,
+    reset: resetAporteMensal,
+  } = useInput((value) => (value.match(reg) ? true : false));
+
+  const {
+    value: enteredRentabilidade,
+    isValid: rentabilidadeIsValid,
+    hasError: rentabilidadeHasError,
+    valueChangeHandler: rentabilidadeChangeHandler,
+    inputBlurHandler: rentabilidadeBlurHandler,
+    reset: resetRentabilidade,
+  } = useInput((value) => (value.match(reg) ? true : false));
+
+  const {
+    value: enteredCDI,
+    isValid: cdiInicialIsValid,
+    hasError: cdiHasError,
+    valueChangeHandler: cdiChangeHandler,
+    inputBlurHandler: cdiBlurHandler,
+  } = useInput((value) => (value.match(reg) ? true : false));
+
+  const [rendimento, setRendimento] = useState("bruto");
+  const [tipoIndexacao, setTipoIndexacao] = useState("pos");
 
   const rendimentoHandler = (type) => {
     setRendimento(type);
@@ -27,7 +83,15 @@ const Simulador = () => {
     setTipoIndexacao(type);
   };
 
-  console.log(rendimento, tipoIndexacao);
+  const limpar = () => {
+    dispatch({ type: "LIMPAR" });
+    setRendimento("");
+    setTipoIndexacao("");
+    resetAporteInicial();
+    resetAporteMensal();
+    resetPrazo();
+    resetRentabilidade();
+  };
 
   return (
     <Grid templateColumns="1fr 1fr">
@@ -44,7 +108,10 @@ const Simulador = () => {
       <GridItem h="auto" marginLeft="30px">
         <Grid templateRows="1fr 1fr 1fr 1fr" gap="10px">
           <GridItem h="10vh">
-            <Text>Rendimento</Text>
+            <HStack>
+              <Text>Rendimento</Text>
+              <InfoOutlineIcon />
+            </HStack>
             <Flex>
               <ButtonGroup
                 variant="outline"
@@ -60,6 +127,7 @@ const Simulador = () => {
                   bg={rendimento === "bruto" ? "#EC8C54" : ""}
                   borderLeftRadius="10px"
                   onClick={() => rendimentoHandler("bruto")}
+                  color={rendimento === "bruto" ? "white" : "black"}
                 >
                   {rendimento === "bruto" ? "✓  " : ""}Bruto
                 </Button>
@@ -67,6 +135,7 @@ const Simulador = () => {
                   borderRightRadius="10px"
                   bg={rendimento === "liquido" ? "#EC8C54" : ""}
                   onClick={() => rendimentoHandler("liquido")}
+                  color={rendimento === "liquido" ? "white" : "black"}
                 >
                   {rendimento === "liquido" ? "✓  " : ""}Líquido
                 </Button>
@@ -74,20 +143,49 @@ const Simulador = () => {
             </Flex>
           </GridItem>
           <GridItem>
-            <UserInput text="Aporte Inicial" />
+            <>
+              {aporteInicialHasError && <p>Insira um número</p>}
+              <UserInput
+                text="Aporte Inicial"
+                onChange={aporteInicialChangeHandler}
+                onBlur={aporteInicialBlurHandler}
+                value={enteredAporteInicial}
+                color={aporteInicialHasError ? 'red' : ''}
+              />
+            </>
           </GridItem>
           <GridItem>
-            <UserInput text="Prazo (em meses)" />
+            <>
+              {prazoHasError && <p>Insira um número</p>}
+              <UserInput
+                text="Prazo (em meses)"
+                onChange={prazoChangeHandler}
+                onBlur={prazoBlurHandler}
+                value={enteredPrazo}
+                color={prazoHasError ? 'red' : ''}
+              />
+            </>
           </GridItem>
           <GridItem>
-            <UserInput text="IPCA (ao ano)" value={indicadores[0]?.valor} />
+            <>
+              {ipcaHasError && <p>Insira um número</p>}
+              <UserInput
+                onChange={ipcaChangeHandler}
+                onBlur={ipcaBlurHandler}
+                text="IPCA (ao ano)"
+                value={indicadores[0]?.valor ? indicadores[0]?.valor : ""}
+              />
+            </>
           </GridItem>
         </Grid>
       </GridItem>
       <GridItem h="auto" marginLeft="30px">
         <Grid templateRows="1fr 1fr 1fr 1fr" gap="10px">
           <GridItem h="10vh">
-            <Text>Tipos de indexação</Text>
+            <HStack>
+              <Text>Tipos de Indexação</Text>
+              <InfoOutlineIcon />
+            </HStack>
             <Flex>
               <ButtonGroup
                 variant="outline"
@@ -102,12 +200,14 @@ const Simulador = () => {
                   borderLeftRadius="10px"
                   onClick={() => indexacaoHandler("pre")}
                   bg={tipoIndexacao === "pre" ? "#EC8C54" : ""}
+                  color={tipoIndexacao === "pre" ? "white" : "black"}
                 >
                   {tipoIndexacao === "pre" ? "✓  " : ""}PRÉ
-                </Button>{" "}
+                </Button>
                 <Button
                   bg={tipoIndexacao === "pos" ? "#EC8C54" : ""}
                   onClick={() => indexacaoHandler("pos")}
+                  color={tipoIndexacao === "pos" ? "white" : "black"}
                 >
                   {tipoIndexacao === "pos" ? "✓  " : ""}PÓS
                 </Button>
@@ -115,6 +215,7 @@ const Simulador = () => {
                   borderRightRadius="10px"
                   bg={tipoIndexacao === "ipca" ? "#EC8C54" : ""}
                   onClick={() => indexacaoHandler("ipca")}
+                  color={tipoIndexacao === "ipca" ? "white" : "black"}
                 >
                   {tipoIndexacao === "ipca" ? "✓  " : ""}FIXADO
                 </Button>
@@ -122,13 +223,33 @@ const Simulador = () => {
             </Flex>
           </GridItem>
           <GridItem>
-            <UserInput text="Aporte Mensal" />
+            <>
+              {aporteMensalHasError && <p>Insira um número</p>}
+              <UserInput
+                text="Aporte Mensal"
+                onChange={aporteMensalChangeHandler}
+                onBlur={aporteMensalBlurHandler}
+                value={enteredAporteMensal}
+                color={aporteMensalHasError ? 'red' : ''}
+              />
+            </>
           </GridItem>
           <GridItem>
-            <UserInput text="Rentabilidade" />
+            {rentabilidadeHasError && <p>Insira um número</p>}
+            <UserInput
+              onChange={rentabilidadeChangeHandler}
+              onBlur={rentabilidadeBlurHandler}
+              text="Rentabilidade"
+              color={rentabilidadeHasError ? 'red' : ''}
+              value={enteredRentabilidade}
+            />
           </GridItem>
+          <></>
           <GridItem>
-            <UserInput text="CDI (ao ano)" value={indicadores[1]?.valor} />
+            <UserInput
+              text="CDI (ao ano)"
+              value={indicadores[1]?.valor ? indicadores[1]?.valor : ""}
+            />
           </GridItem>
         </Grid>
       </GridItem>
@@ -142,6 +263,7 @@ const Simulador = () => {
             borderColor="black"
             color="black"
             bg="#EFEFEF"
+            onClick={limpar}
           >
             Limpar Campos
           </Button>

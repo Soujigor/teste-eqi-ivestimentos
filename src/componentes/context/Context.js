@@ -1,23 +1,37 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { cartReducer } from "./Reducers";
+import { cartReducer, inputsReducer } from "./Reducers";
 
 const Cart = createContext();
 
 const Context = ({ children }) => {
-  useEffect(() => {
-    async function fetchIndicadores() {
-      const response = await fetch("http://localhost:3000/indicadores");
-      const data = await response.json();
-      dispatch({ type: "LOADING", value: data });
-    }
-    fetchIndicadores();
-  }, []);
-
   const [state, dispatch] = useReducer(cartReducer, {
     indicadores: [],
     simular: { tipoIndex: "", rendimento: "" },
     resultado: {}
   });
+
+  const [inputsState, inputsDispatch] = useReducer(inputsReducer, {
+    aporteInicial: '',
+    prazo: '',
+    ipca: '',
+    aporteMensal: '',
+    rentabilidade: '',
+    cdi: '',
+  })
+
+  useEffect(() => {
+    async function fetchIndicadores() {
+      const response = await fetch("http://localhost:3000/indicadores");
+      const data = await response.json();
+      
+      dispatch({ type: "LOADING", value: data });
+      inputsDispatch({ type: "LOADING", value: {
+        ipca: data[0].valor,
+        cdi: data[1].valor
+      }});
+    }
+    fetchIndicadores();
+  }, []);
 
   useEffect(() => {
     async function fetchSimulacao(tipoIndex, rendimento) {
@@ -35,9 +49,7 @@ const Context = ({ children }) => {
     }
   }, [state.simular.tipoIndex, state.simular.rendimento]);
 
-  console.log(state);
-
-  return <Cart.Provider value={{ state, dispatch }}>{children}</Cart.Provider>;
+  return <Cart.Provider value={{ state, dispatch, inputsState, inputsDispatch }}>{children}</Cart.Provider>;
 };
 
 export const CartState = () => {

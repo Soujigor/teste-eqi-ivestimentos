@@ -19,6 +19,7 @@ const Resultado = () => {
       />
       <ResultadoCard
         text="Valor Final Líquido"
+        color='green'
         value={state.resultado.valorFinalLiquido}
       />
       <ResultadoCard
@@ -27,6 +28,7 @@ const Resultado = () => {
       />
       <ResultadoCard
         text="Ganho Líquido"
+        color='green'
         value={state.resultado.ganhoLiquido}
       />
       <Box w="580px" h="400px">

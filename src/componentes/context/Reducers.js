@@ -15,8 +15,21 @@ export const cartReducer = (state, action) => {
         ...state,
         resultado: { ...action.value[0] },
       };
-    case "UPDATE_PRODUCTS":
-      return { ...state, products: action.value };
+    case "LIMPAR":
+      return {
+        indicadores: ["", ""],
+        simular: { tipoIndex: "", rendimento: "" },
+        resultado: {},
+      };
+    default:
+      return state;
+  }
+};
+
+export const inputsReducer = (state, action) => {
+  switch (action.type) {
+    case "LOADING":
+      return { ...state, ipca: action.value.ipca, cdi: action.value.cdi };
     default:
       return state;
   }
