@@ -5,11 +5,13 @@ const ResultadoCard = (props) => {
   return (
     <Box
       bg="#F4F4F4"
-      padding="1"
+      margin="3"
+      padding="3"
       height="80px"
       width="180px"
-      boxShadow="dark-lg"
-    >
+      boxShadow="md"
+      border="1px" 
+      borderColor="#CBD5E0">
       <Text>{props.text} </Text>
       <Text color={props.color || ""}>{props.value} </Text>
     </Box>

@@ -1,14 +1,19 @@
 import "./App.css";
-import { Container } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 // import { Grid, GridItem } from "@chakra-ui/react";
 import Main from "./componentes/Main";
 
 function App() {
   return (
-    <Container h="700px" bg="#EFEFEF" margin="30px 45px">
-      
+    <Flex
+      h="fit-content"
+      w="fit-content"
+      bg="#F4F4F4"
+      margin="30px 45px"
+      mx="auto"
+    >
       <Main />
-    </Container>
+    </Flex>
   );
 }
 

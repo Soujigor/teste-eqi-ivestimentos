@@ -39,7 +39,7 @@ const Simulador = () => {
   } = useInput((value) => (value.match(reg) ? true : false));
 
   const {
-    value: enteredIPCA,
+    // value: enteredIPCA,
     isValid: ipcaIsValid,
     hasError: ipcaHasError,
     valueChangeHandler: ipcaChangeHandler,
@@ -64,16 +64,20 @@ const Simulador = () => {
     reset: resetRentabilidade,
   } = useInput((value) => (value.match(reg) ? true : false));
 
-  const {
-    value: enteredCDI,
-    isValid: cdiIsValid,
-    hasError: cdiHasError,
-    valueChangeHandler: cdiChangeHandler,
-    inputBlurHandler: cdiBlurHandler,
-  } = useInput((value) => (value.match(reg) ? true : false));
+  // const {
+  //   value: enteredCDI,
+  //   isValid: cdiIsValid,
+  //   hasError: cdiHasError,
+  //   valueChangeHandler: cdiChangeHandler,
+  //   inputBlurHandler: cdiBlurHandler,
+  // } = useInput((value) => (value.match(reg) ? true : false));
 
-  const inputsAreValid = aporteInicialIsValid && prazoIsValid && aporteMensalIsValid && rentabilidadeIsValid
-  console.log(ipcaIsValid)
+  const inputsAreValid =
+    aporteInicialIsValid &&
+    prazoIsValid &&
+    aporteMensalIsValid &&
+    rentabilidadeIsValid;
+  console.log(ipcaIsValid);
   const [rendimento, setRendimento] = useState("bruto");
   const [tipoIndexacao, setTipoIndexacao] = useState("pos");
 
@@ -99,8 +103,8 @@ const Simulador = () => {
     dispatch({
       type: "SIMULAR",
       value: { tipoIndex: tipoIndexacao, rendimento: rendimento },
-    })
-  }
+    });
+  };
 
   return (
     <Grid templateColumns="1fr 1fr">
@@ -134,14 +138,14 @@ const Simulador = () => {
               >
                 <Button
                   bg={rendimento === "bruto" ? "#EC8C54" : ""}
-                  borderLeftRadius="10px"
+                  borderColor="black"
                   onClick={() => rendimentoHandler("bruto")}
                   color={rendimento === "bruto" ? "white" : "black"}
                 >
                   {rendimento === "bruto" ? "✓  " : ""}Bruto
                 </Button>
                 <Button
-                  borderRightRadius="10px"
+                  borderColor="black"
                   bg={rendimento === "liquido" ? "#EC8C54" : ""}
                   onClick={() => rendimentoHandler("liquido")}
                   color={rendimento === "liquido" ? "white" : "black"}
@@ -159,7 +163,7 @@ const Simulador = () => {
                 onChange={aporteInicialChangeHandler}
                 onBlur={aporteInicialBlurHandler}
                 value={enteredAporteInicial}
-                color={aporteInicialHasError ? 'red' : ''}
+                color={aporteInicialHasError ? "red" : ""}
               />
             </>
           </GridItem>
@@ -171,7 +175,7 @@ const Simulador = () => {
                 onChange={prazoChangeHandler}
                 onBlur={prazoBlurHandler}
                 value={enteredPrazo}
-                color={prazoHasError ? 'red' : ''}
+                color={prazoHasError ? "red" : ""}
               />
             </>
           </GridItem>
@@ -206,7 +210,7 @@ const Simulador = () => {
                 color="black"
               >
                 <Button
-                  borderLeftRadius="10px"
+                  borderColor="black"
                   onClick={() => indexacaoHandler("pre")}
                   bg={tipoIndexacao === "pre" ? "#EC8C54" : ""}
                   color={tipoIndexacao === "pre" ? "white" : "black"}
@@ -214,6 +218,7 @@ const Simulador = () => {
                   {tipoIndexacao === "pre" ? "✓  " : ""}PRÉ
                 </Button>
                 <Button
+                  borderColor="black"
                   bg={tipoIndexacao === "pos" ? "#EC8C54" : ""}
                   onClick={() => indexacaoHandler("pos")}
                   color={tipoIndexacao === "pos" ? "white" : "black"}
@@ -221,7 +226,7 @@ const Simulador = () => {
                   {tipoIndexacao === "pos" ? "✓  " : ""}PÓS
                 </Button>
                 <Button
-                  borderRightRadius="10px"
+                  borderColor="black"
                   bg={tipoIndexacao === "ipca" ? "#EC8C54" : ""}
                   onClick={() => indexacaoHandler("ipca")}
                   color={tipoIndexacao === "ipca" ? "white" : "black"}
@@ -239,7 +244,7 @@ const Simulador = () => {
                 onChange={aporteMensalChangeHandler}
                 onBlur={aporteMensalBlurHandler}
                 value={enteredAporteMensal}
-                color={aporteMensalHasError ? 'red' : ''}
+                color={aporteMensalHasError ? "red" : ""}
               />
             </>
           </GridItem>
@@ -249,7 +254,7 @@ const Simulador = () => {
               onChange={rentabilidadeChangeHandler}
               onBlur={rentabilidadeBlurHandler}
               text="Rentabilidade"
-              color={rentabilidadeHasError ? 'red' : ''}
+              color={rentabilidadeHasError ? "red" : ""}
               value={enteredRentabilidade}
             />
           </GridItem>
@@ -268,7 +273,7 @@ const Simulador = () => {
             size="md"
             height="48px"
             width="200px"
-            borderRadius="10px"
+            border="1px"
             borderColor="black"
             color="black"
             bg="#EFEFEF"
@@ -280,10 +285,8 @@ const Simulador = () => {
             size="md"
             height="48px"
             width="200px"
-            borderRadius="10px"
-            borderColor="white"
-            color="white"
-            bg="orange"
+            color="black"
+            bg="#EC8C54"
             onClick={submitHandler}
             disabled={!inputsAreValid}
           >

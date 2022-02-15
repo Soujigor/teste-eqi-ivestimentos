@@ -7,6 +7,7 @@ import {
   Label,
   Tooltip,
   Legend,
+  YAxis,
   ResponsiveContainer,
 } from "recharts";
 import { CartState } from "../componentes/context/Context";
@@ -31,7 +32,8 @@ const Grafico = () => {
 
   return (
     <>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="95%">
+        
         <BarChart
           width={500}
           height={1300}
@@ -46,9 +48,11 @@ const Grafico = () => {
           <XAxis dataKey="name">
             <Label value="Tempo (meses)" offset={0} position="insideBottom" />
           </XAxis>
-          {/* <YAxis /> */}
+          <YAxis tickLine={false} axisLine={false} tick={false}>
+            <Label value="Valor R$" angle={-90} position="insideLeft" />
+          </YAxis>
           <Tooltip />
-          <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
+          <Legend verticalAlign="bottom" wrapperStyle={{ lineHeight: "40px" }} />
           <ReferenceLine y={0} stroke="#000" />
           {/* <Brush dataKey="name" height={30} stroke="#8884d8" /> */}
 

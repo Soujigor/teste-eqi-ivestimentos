@@ -1,5 +1,5 @@
 import React from "react";
-import { SimpleGrid, Box } from "@chakra-ui/react";
+import { SimpleGrid, Box, GridItem, Grid } from "@chakra-ui/react";
 import ResultadoCard from "./ResultadoCard";
 import { CartState } from "../componentes/context/Context";
 import Grafico from "./Grafico";
@@ -7,7 +7,16 @@ const Resultado = () => {
   const { state } = CartState();
 
   return (
-    <SimpleGrid columns={3} spacing="8" p="10" textAlign="center" rounded="lg">
+    <Grid templateColumns='repeat(3, 1fr)' spacing="10" paddingBottom={1} textAlign="center" rounded="lg">
+      <GridItem
+        h="20px"
+        align-items="flex-start"
+        colStart={1}
+        colEnd={-1}
+                fontWeight="bold"
+      >
+        Resultado da Simulação
+      </GridItem>
       <ResultadoCard
         text="Valor final Bruto"
         value={state.resultado.valorFinalBruto}
@@ -31,10 +40,10 @@ const Resultado = () => {
         color='green'
         value={state.resultado.ganhoLiquido}
       />
-      <Box w="580px" h="400px">
+      <GridItem colStart={1} colEnd={-1} h="350px">
         <Grafico />
-      </Box>
-    </SimpleGrid>
+      </GridItem>
+    </Grid>
   );
 };
 
