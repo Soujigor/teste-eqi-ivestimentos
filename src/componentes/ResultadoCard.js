@@ -12,8 +12,8 @@ const ResultadoCard = (props) => {
       boxShadow="md"
       border="1px" 
       borderColor="#CBD5E0">
-      <Text>{props.text} </Text>
-      <Text color={props.color || ""}>{props.value} </Text>
+      <Text fontWeight="bold">{props.text} </Text>
+      <Text color={props.color || ""}  paddingTop="10px" > {props.value} </Text>
     </Box>
   );
 };

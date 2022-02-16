@@ -2,7 +2,6 @@ import React from "react";
 import {
   BarChart,
   Bar,
-  ReferenceLine,
   XAxis,
   Label,
   Tooltip,
@@ -33,7 +32,6 @@ const Grafico = () => {
   return (
     <>
       <ResponsiveContainer width="100%" height="95%">
-        
         <BarChart
           width={500}
           height={1300}
@@ -42,26 +40,38 @@ const Grafico = () => {
             top: 5,
             right: 30,
             left: 20,
-            bottom: 5,
+            bottom: 1,
           }}
+          stroke
         >
-          <XAxis dataKey="name">
+          <XAxis dataKey="name" tickLine={false} axisLine={false}>
             <Label value="Tempo (meses)" offset={0} position="insideBottom" />
           </XAxis>
           <YAxis tickLine={false} axisLine={false} tick={false}>
-            <Label value="Valor R$" angle={-90} position="insideLeft" />
+            <Label value="Valor (R$)" angle={-90} position="insideLeft" />
           </YAxis>
           <Tooltip />
-          <Legend verticalAlign="bottom" wrapperStyle={{ lineHeight: "40px" }} />
-          <ReferenceLine y={0} stroke="#000" />
-          {/* <Brush dataKey="name" height={30} stroke="#8884d8" /> */}
+          <Legend
+            verticalAlign="bottom"
+            wrapperStyle={{ lineHeight: "40px" }}
+          />
+         
 
-          <Bar dataKey="semAporte" maxBarSize={400} stackId={1} fill="black" />
+          <Bar
+            dataKey="semAporte"
+            maxBarSize={400}
+            stackId={1}
+            fill="black"
+            stroke="#F4F4F4"
+            strokeWidth="4"
+          />
           <Bar
             dataKey="comAporte"
             maxBarSize={400}
             stackId={1}
             fill="#ED8E53"
+            stroke="#F4F4F4"
+            strokeWidth="4"
           />
         </BarChart>
       </ResponsiveContainer>

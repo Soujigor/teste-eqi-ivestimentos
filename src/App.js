@@ -1,11 +1,10 @@
-import "./App.css";
-import { Flex } from "@chakra-ui/react";
-// import { Grid, GridItem } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
+
 import Main from "./componentes/Main";
 
 function App() {
   return (
-    <Flex
+    <Stack
       h="fit-content"
       w="fit-content"
       bg="#F4F4F4"
@@ -13,7 +12,7 @@ function App() {
       mx="auto"
     >
       <Main />
-    </Flex>
+    </Stack>
   );
 }
 
