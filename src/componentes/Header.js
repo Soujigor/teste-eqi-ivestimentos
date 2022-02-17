@@ -6,7 +6,7 @@ const Header = () => {
     <Stack>
       <Text textAlign="center" fontSize="25px" fontWeight="bold">
         Simulador de Investimentos
-      </Text>{" "}
+      </Text>
     </Stack>
   );
 };

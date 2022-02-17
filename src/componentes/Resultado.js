@@ -20,6 +20,7 @@ const Resultado = () => {
       <GridItem
         h="20px"
         align-items="flex-start"
+        fontSize="18px"
         colStart={1}
         colEnd={-1}
         fontWeight="bold"

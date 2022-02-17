@@ -11,7 +11,7 @@ const Main = () => {
   } = CartState();
   return (
     <Stack gap={10}>
-      <GridItem colStart={1} colEnd={-1}>
+      <GridItem colStart={1} colEnd={-1} pt={10}>
         <Header />
       </GridItem>
       <Stack
@@ -23,7 +23,7 @@ const Main = () => {
         <GridItem>
           <Simulador />
         </GridItem>
-        <GridItem>{simular.rendimento && <Resultado />}</GridItem>
+        <GridItem colStart={[1, 2]} paddingRight={5}>{simular.rendimento && <Resultado />}</GridItem>
       </Stack>
     </Stack>
   );

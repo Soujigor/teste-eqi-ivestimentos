@@ -200,7 +200,7 @@ const Simulador = () => {
                   color="red"
                   paddingTop="5px"
                 >
-                  Insira um número
+                  Aporte deve ser um número
                 </Text>
               )}
             </>
@@ -222,7 +222,7 @@ const Simulador = () => {
                   color="red"
                   paddingTop="5px"
                 >
-                  Insira um número
+                  Prazo deve ser um número
                 </Text>
               )}
             </>
@@ -242,13 +242,13 @@ const Simulador = () => {
       </GridItem>
       <GridItem h="auto" marginLeft="30px">
         <Grid templateRows="1fr 1fr 1fr 1fr" gap="10px">
-          <GridItem h="10vh">
+          <GridItem h="10vh" pr={[3]}>
             <HStack justifyContent="space-between" paddingBottom="10px">
               <Text fontFamily="Helvetica" fontWeight="normal" fontSize="14px">
                 Tipos de Indexação
               </Text>
-              <Popover placement="top-start">
-                <PopoverTrigger >
+              <Popover placement="top-start" >
+                <PopoverTrigger>
                   <InfoOutlineIcon />
                 </PopoverTrigger>
                 <PopoverContent>
@@ -318,7 +318,7 @@ const Simulador = () => {
               </ButtonGroup>
             </Flex>
           </GridItem>
-          <GridItem>
+          <GridItem pr={[3]}>
             <>
               <UserInput
                 text="Aporte Mensal"
@@ -335,12 +335,12 @@ const Simulador = () => {
                   color="red"
                   paddingTop="5px"
                 >
-                  Insira um número
+                  Aporte deve ser um número
                 </Text>
               )}
             </>
           </GridItem>
-          <GridItem>
+          <GridItem pr={[3]}>
             <UserInput
               onChange={rentabilidadeChangeHandler}
               onBlur={rentabilidadeBlurHandler}
@@ -356,7 +356,7 @@ const Simulador = () => {
                 color="red"
                 paddingTop="5px"
               >
-                Insira um número
+                Rentabilidade deve ser um número
               </Text>
             )}
           </GridItem>

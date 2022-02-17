@@ -8,7 +8,7 @@ function App() {
       h="fit-content"
       w="fit-content"
       bg="#F4F4F4"
-      margin="30px 45px"
+      margin="80px 45px"
       mx="auto"
     >
       <Main />
