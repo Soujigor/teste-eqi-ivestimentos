@@ -19,6 +19,7 @@ const Main = () => {
         templateRows="75px 560px"
         templateColumns="1fr 1fr"
         gap={5}
+        padding={10}
       >
         <GridItem>
           <Simulador />
