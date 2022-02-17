@@ -6,6 +6,7 @@ import Grafico from "./Grafico";
 const Resultado = () => {
   const { state } = SimulationState();
 
+
   return (
     <Grid
       templateColumns="repeat(3, 1fr)"

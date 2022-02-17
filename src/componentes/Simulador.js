@@ -20,11 +20,9 @@ import { UserInput } from "./UserInput";
 import { SimulationState } from "../componentes/context/Context";
 import useInput from "./hooks/use-input";
 
+
 const Simulador = () => {
-  const {
-    state: { indicadores },
-    dispatch,
-  } = SimulationState();
+  const { state, dispatch } = SimulationState();
 
   const reg = /^\d+$/;
   const {
@@ -46,7 +44,6 @@ const Simulador = () => {
   } = useInput((value) => (value.match(reg) ? true : false));
 
   const {
-    isValid: ipcaIsValid,
     valueChangeHandler: ipcaChangeHandler,
     inputBlurHandler: ipcaBlurHandler,
   } = useInput((value) => (value.match(reg) ? true : false));
@@ -74,7 +71,7 @@ const Simulador = () => {
     prazoIsValid &&
     aporteMensalIsValid &&
     rentabilidadeIsValid;
-  console.log(ipcaIsValid);
+
   const [rendimento, setRendimento] = useState("bruto");
   const [tipoIndexacao, setTipoIndexacao] = useState("pos");
 
@@ -101,6 +98,7 @@ const Simulador = () => {
       type: "SIMULAR",
       value: { tipoIndex: tipoIndexacao, rendimento: rendimento },
     });
+ 
   };
 
   return (
@@ -231,7 +229,9 @@ const Simulador = () => {
                 onChange={ipcaChangeHandler}
                 onBlur={ipcaBlurHandler}
                 text="IPCA (ao ano)"
-                value={indicadores[0]?.valor ? indicadores[0]?.valor : ""}
+                value={
+                  state.indicadores[0]?.valor ? state.indicadores[0]?.valor : ""
+                }
               />
             </>
           </GridItem>
@@ -361,7 +361,9 @@ const Simulador = () => {
           <GridItem>
             <UserInput
               text="CDI (ao ano)"
-              value={indicadores[1]?.valor ? indicadores[1]?.valor : ""}
+              value={
+                state.indicadores[1]?.valor ? state.indicadores[1]?.valor : ""
+              }
             />
           </GridItem>
         </Grid>

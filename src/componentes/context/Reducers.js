@@ -26,11 +26,3 @@ export const simulationReducer = (state, action) => {
   }
 };
 
-export const inputsReducer = (state, action) => {
-  switch (action.type) {
-    case "LOADING":
-      return { ...state, ipca: action.value.ipca, cdi: action.value.cdi };
-    default:
-      return state;
-  }
-};

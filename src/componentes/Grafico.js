@@ -27,7 +27,6 @@ const Grafico = () => {
       },
     ];
   }
-  console.log(data);
 
   return (
     <>
