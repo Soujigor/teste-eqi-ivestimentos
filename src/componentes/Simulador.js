@@ -17,14 +17,14 @@ import {
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { UserInput } from "./UserInput";
-import { CartState } from "../componentes/context/Context";
+import { SimulationState } from "../componentes/context/Context";
 import useInput from "./hooks/use-input";
 
 const Simulador = () => {
   const {
     state: { indicadores },
     dispatch,
-  } = CartState();
+  } = SimulationState();
 
   const reg = /^\d+$/;
   const {
@@ -46,9 +46,7 @@ const Simulador = () => {
   } = useInput((value) => (value.match(reg) ? true : false));
 
   const {
-    // value: enteredIPCA,
     isValid: ipcaIsValid,
-    // hasError: ipcaHasError,
     valueChangeHandler: ipcaChangeHandler,
     inputBlurHandler: ipcaBlurHandler,
   } = useInput((value) => (value.match(reg) ? true : false));
@@ -229,7 +227,6 @@ const Simulador = () => {
           </GridItem>
           <GridItem>
             <>
-              {/* {ipcaHasError && <p>Insira um número</p>} */}
               <UserInput
                 onChange={ipcaChangeHandler}
                 onBlur={ipcaBlurHandler}
@@ -247,7 +244,7 @@ const Simulador = () => {
               <Text fontFamily="Helvetica" fontWeight="normal" fontSize="14px">
                 Tipos de Indexação
               </Text>
-              <Popover placement="top-start" >
+              <Popover placement="top-start">
                 <PopoverTrigger>
                   <InfoOutlineIcon />
                 </PopoverTrigger>

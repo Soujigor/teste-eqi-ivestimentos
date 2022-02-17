@@ -4,6 +4,43 @@
 O desafio era a construção de um front-end para um Simulador de Investimentos. 
 No app, é permitido ao usuário simular rendimentos de acordo com o tipo de indexação e tipo de rendimento escolhido.
 
+## Variáveis de Ambiente
+
+Para rodar esse projeto, foi necessário mudar a port de acesso do APP
+
+No arquivo `package.json`, foi modificado o start do script:
+
+`"scripts": {
+    "start": "set PORT=8000 && react-scripts start",
+     },`
+
+
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/Soujigor/eqi-ivestimentos
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd eqi-investimentos
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run start
+``` 
+
 ## Documentação
 
 * Wireframe fornecido pelo testador (https://github.com/eqi-investimentos/desafio-frontend)
@@ -16,16 +53,6 @@ No app, é permitido ao usuário simular rendimentos de acordo com o tipo de ind
 * [React](https://reactjs.org)
 * [Chakra UI](https://chakra-ui.com)
 * [Recharts](https://recharts.org/en-US/)
-
-## Variáveis de Ambiente
-
-Para rodar esse projeto, foi necessário mudar a port de acesso do APP
-
-No arquivo `package.json`, foi modificado o start do script:
-
-`"scripts": {
-    "start": "set PORT=8000 && react-scripts start",
-     },`
 
 
 ## Screenshots
@@ -52,31 +79,7 @@ No arquivo `package.json`, foi modificado o start do script:
 **Exibição de Popover**
 
 ![Simulador_popover](https://i.imgur.com/GAeuVOR.png)
-## Rodando localmente
 
-Clone o projeto
-
-```bash
-  git clone https://github.com/Soujigor/eqi-ivestimentos
-```
-
-Entre no diretório do projeto
-
-```bash
-  cd eqi-investimentos
-```
-
-Instale as dependências
-
-```bash
-  npm install
-```
-
-Inicie o servidor
-
-```bash
-  npm run start
-```
 
 ## Extensões do VsCode
 

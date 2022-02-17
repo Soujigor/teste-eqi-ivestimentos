@@ -1,10 +1,10 @@
 import React from "react";
 import { GridItem, Grid } from "@chakra-ui/react";
 import ResultadoCard from "./ResultadoCard";
-import { CartState } from "../componentes/context/Context";
+import { SimulationState } from "../componentes/context/Context";
 import Grafico from "./Grafico";
 const Resultado = () => {
-  const { state } = CartState();
+  const { state } = SimulationState();
 
   return (
     <Grid

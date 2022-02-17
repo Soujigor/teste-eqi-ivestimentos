@@ -3,12 +3,12 @@ import { Stack, GridItem } from "@chakra-ui/react";
 import Header from "./Header";
 import Simulador from "./Simulador";
 import Resultado from "./Resultado";
-import { CartState } from "../componentes/context/Context";
+import { SimulationState } from "../componentes/context/Context";
 
 const Main = () => {
   const {
     state: { simular },
-  } = CartState();
+  } = SimulationState();
   return (
     <Stack gap={10}>
       <GridItem colStart={1} colEnd={-1} pt={10}>
@@ -24,7 +24,9 @@ const Main = () => {
         <GridItem>
           <Simulador />
         </GridItem>
-        <GridItem colStart={[1, 2]} paddingRight={5}>{simular.rendimento && <Resultado />}</GridItem>
+        <GridItem colStart={[1, 2]} paddingRight={5}>
+          {simular.rendimento && <Resultado />}
+        </GridItem>
       </Stack>
     </Stack>
   );

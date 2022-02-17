@@ -1,10 +1,10 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { cartReducer, inputsReducer } from "./Reducers";
+import { simulationReducer, inputsReducer } from "./Reducers";
 
-const Cart = createContext();
+const Simulation = createContext();
 
 const Context = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, {
+  const [state, dispatch] = useReducer(simulationReducer, {
     indicadores: [],
     simular: { tipoIndex: "", rendimento: "" },
     resultado: {}
@@ -49,11 +49,11 @@ const Context = ({ children }) => {
     }
   }, [state.simular.tipoIndex, state.simular.rendimento]);
 
-  return <Cart.Provider value={{ state, dispatch, inputsState, inputsDispatch }}>{children}</Cart.Provider>;
+  return <Simulation.Provider value={{ state, dispatch, inputsState, inputsDispatch }}>{children}</Simulation.Provider>;
 };
 
-export const CartState = () => {
-  return useContext(Cart);
+export const SimulationState = () => {
+  return useContext(Simulation);
 };
 
 export default Context;

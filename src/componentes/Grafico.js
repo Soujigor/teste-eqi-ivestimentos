@@ -9,11 +9,11 @@ import {
   YAxis,
   ResponsiveContainer,
 } from "recharts";
-import { CartState } from "../componentes/context/Context";
+import { SimulationState } from "../componentes/context/Context";
 const Grafico = () => {
   const {
     state: { resultado },
-  } = CartState();
+  } = SimulationState();
 
   let data = [];
 

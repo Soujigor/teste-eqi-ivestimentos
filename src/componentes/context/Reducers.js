@@ -1,4 +1,4 @@
-export const cartReducer = (state, action) => {
+export const simulationReducer = (state, action) => {
   switch (action.type) {
     case "LOADING":
       return { ...state, indicadores: action.value };
