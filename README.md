@@ -57,7 +57,9 @@ Inicie o servidor
 
 ## Screenshots
 
+
 **Tela Inicial**
+
 ![Simulador](https://i.imgur.com/LjARS2O.png)
 
 ##
