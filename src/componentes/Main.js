@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Stack, GridItem, Spinner } from "@chakra-ui/react";
-import Header from "./Header";
+import { Box, Spinner, SimpleGrid, Flex } from "@chakra-ui/react";
 import Simulador from "./Simulador";
 import Resultado from "./Resultado";
 import { SimulationState } from "../componentes/context/Context";
@@ -24,38 +23,34 @@ const Main = () => {
 
   useEffect(() => {
     if (simular.rendimento !== "" && simular.tipoIndex !== "") {
-      
       dispatch({ type: "RESULTADO", value: data });
     }
   }, [dispatch, data, simular.tipoIndex, simular.rendimento]);
 
   return (
-    <Stack gap={10}>
-      <GridItem colStart={1} colEnd={-1} pt={10}>
-        <Header />
-      </GridItem>
-      <Stack
-        direction={["column", "row"]}
-        templateRows="75px 560px"
-        templateColumns="1fr 1fr"
-        gap={5}
-        padding={10}
-      >
-        <GridItem>{loading ? <Spinner size="xl" /> : <Simulador />}</GridItem>
-        <GridItem colStart={[1, 2]} paddingRight={5}>
-          {loadingGraph && !loading && (
-            <Spinner
-              thickness="4px"
-              speed="0.65s"
-              emptyColor="gray.200"
-              color="#EC8C54"
-              size='xl'
-            />
-          )}
-          {simular.rendimento && !loadingGraph && <Resultado />}
-        </GridItem>
-      </Stack>
-    </Stack>
+    <SimpleGrid
+      justifyContent="center"
+      pt={10}
+      gridTemplateColumns="repeat(auto-fit, minmax(400px, 600px))"
+    >
+      <Box pb="60px" pr="30px">
+        {loading ? <Spinner size="xl" /> : <Simulador />}
+      </Box>
+
+      <Flex paddingRight={5} width="100%" justify="center" heigth="100%">
+        {loadingGraph && !loading && (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="#EC8C54"
+            size="xl"
+            mt="200px"
+          />
+        )}
+        {simular.rendimento && !loadingGraph && <Resultado />}
+      </Flex>
+    </SimpleGrid>
   );
 };
 
