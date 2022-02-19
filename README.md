@@ -90,3 +90,8 @@ Inicie o servidor
 * ES7+ React/Redux/React-Native snippets
 
 
+## Apêndice
+
+Após a entrega do teste, continuei estudando e trabalhando para melhorias no app e consegui deixa-lo melhor responsivamente. As mudanças podem ser verificadas na branch [Improvements](https://github.com/Soujigor/teste-eqi-ivestimentos/tree/improvements)
+
+
